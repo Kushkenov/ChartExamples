@@ -1,16 +1,27 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import random
 
-# Data for plotting
-t = np.arange(0.0, 2.0, 0.01)
-s = 1 + np.sin(2 * np.pi * t)
+# Генерируем случайное число от 1 до 100
+число = random.randint(1, 100)
 
-fig, ax = plt.subplots()
-ax.plot(t, s)
+print("Добро пожаловать в игру 'Угадай число'!")
+print("Я загадал число от 1 до 100.")
 
-ax.set(xlabel='time (s)', ylabel='voltage (mV)',
-       title='About as simple as it gets, folks')
-ax.grid()
+попытки = 0
 
-fig.savefig("test.png")
-plt.show()
+while True:
+    попытки += 1
+    попытка = input("Попробуйте угадать число: ")
+    
+    try:
+        попытка = int(попытка)
+    except ValueError:
+        print("Пожалуйста, введите число.")
+        continue
+    
+    if попытка < число:
+        print("Моё число больше.")
+    elif попытка > число:
+        print("Моё число меньше.")
+    else:
+        print(f"Поздравляю! Вы угадали число {число} за {попытки} попыток.")
+        break
